@@ -34,7 +34,7 @@ var library = [
 const addBooks = (book) => {
     console.log(library.length);
     library.push(book);
-    console.log(library.length);
+    console.log(library.length());
  };
 
 const listOfAvailableBooks = () => {
@@ -93,6 +93,7 @@ const borrow = (bookName, holder) => {
     }
 }
 
+//how to connect it to after the borrowing credentials
 const returnBook = (bookName, holder) => {
     var returnedBook;
     library.forEach(book => {
@@ -112,5 +113,5 @@ const returnBook = (bookName, holder) => {
     }
 }
 
-borrow('Think and Grow Rich', 'John Smith');
+//borrow('Think and Grow Rich', 'John Smith');
 returnBook("Think and Grow Rich","James Collins");
