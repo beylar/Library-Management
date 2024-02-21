@@ -1,47 +1,116 @@
 var library = [
     {
-        title: 'Business and Leadership',
-        author: 'Jane Doe',
+        title: 'The Digital Fortress',
+        author: 'Dan Brown',
         availability: true,
+        holder: ''
     },
     {
-        title: '10 Principles of Communication',
-        author: 'Chris Malloni',
+        title: 'The Davinci Code',
+        author: 'Dan Brown',
         availability: false,
+        holder: 'John Smith'
     },
     {
-        title: 'What is Black Market',
-        author: 'Vusi Thembekwayo',
-        availability: true,
-    },
-    {
-        title: 'Spiritual growth',
-        author: 'Myles Munroe',
-        availability: true,
-    },
-    {
-        title: 'All about BitCoin',
+        title: 'Long Eagle',
         author: 'Anonymous',
-        availability: false,
+        availability: true,
+        holder: ''
     },
-    
-
+    {
+        title: 'Atomic Habits',
+        author: 'James Clair',
+        availability: false,
+        holder: 'Aline'
+    },
+    {
+        title: 'Think and Grow Rich',
+        author: 'Napoleon Hill',
+        availability: true,
+        holder: ''
+    },
 ];
 
-const addBooks = (book) =>{
+const addBooks = (book) => {
     console.log(library.length);
     library.push(book);
     console.log(library.length);
-           
-};
-const borrowBooks = () => {
+ };
 
-};
-const returnBooks = () => {
+const listOfAvailableBooks = () => {
+    var available = [];
+    library.forEach(book => {
+        if (book.availability === true) {
+            available.push(book);
+        }
+    });
+    console.log(available);
+}
 
-};
+// const listAllAvailableBooks = () => {
+//     var available = library.filter(book => book.availability === true);
+//     console.log(available);
+// }
 
-const listOfAvailableBooks = () => { //it should be updated accordingly
+// const listAvailableBooks = () => {
+//     var available = [];
+//     for (var i = 0; i < library.length; i++) {
+//         if (library[i].availability === true) {
+//             available.push(library[i]);
+//         }
+//     }
+//     console.log(available);
+// };
 
-};
+// listAllAvailableBooks();
 
+const borrow = (bookName, holder) => { 
+    // Check whether the book is available 
+    // var availableBook = library.find(book => book.title === bookName && book.availability === true);
+    // console.log(availableBook);
+    // if (!availableBook) {
+    //     console.log('That book is not available');
+    //     return;
+    // }
+
+    var theAvailableBook = {};
+    library.forEach(book => {
+        if (book.title === bookName && book.availability === true) {
+            theAvailableBook = book;
+            book.availability = false;
+            book.holder = holder;
+            console.log("The book is available for borrowing!");
+            return;
+        }
+    });
+
+    console.log(theAvailableBook);
+
+    if (theAvailableBook.availability || theAvailableBook.availability === false) {
+        console.log(library);
+    } else {
+        console.log('That book is not available');
+    }
+}
+
+const returnBook = (bookName, holder) => {
+    var returnedBook;
+    library.forEach(book => {
+        if (book.title === bookName && book.holder === holder) {
+            returnedBook = book;
+            book.availability = true;
+            book.holder = "";
+            console.log("Thank you for returning the book, Come back soon!");
+            return;
+        }
+    });
+
+    if (book.title !== bookName || book.holder !== holder){
+        console.log("Please return the rent book");
+    } else {
+        console.log('Please provide the borrowing issue for confirmation');
+    }
+}
+
+borrow('Think and Grow Rich', 'John Smith');
+returnBook("Think and Grow Rich","James Collins");
